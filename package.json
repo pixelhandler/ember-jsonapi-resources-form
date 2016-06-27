@@ -14,7 +14,7 @@
   },
   "repository": "https://github.com/pixelhandler/ember-jsonapi-resources-form",
   "engines": {
-    "node": ">= 4.3.1"
+    "node": ">= 4.4.5"
   },
   "author": "Bill Heaton <pixelhandler@gmail.com>",
   "license": "MIT",
