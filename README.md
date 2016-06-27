@@ -7,6 +7,9 @@ that follows JSON API 1.0 specification.
 
 [ember-jsonapi-resources]: http://ember-jsonapi-resources.com
 
+[![Build Status](https://travis-ci.org/pixelhandler/ember-jsonapi-resources-form.svg?branch=master)](https://travis-ci.org/pixelhandler/ember-jsonapi-resources-form)
+
+
 ## Example Use
 
 For a simple example see the `address-form` component usage in the `dummy` app.
