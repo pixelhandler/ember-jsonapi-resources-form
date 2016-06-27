@@ -1,0 +1,13 @@
+{{address-form
+  model=model
+  isNew=model.isNew
+  isEditing=true
+  on-toEdit=(route-action 'toEdit') }}
+
+{{address-form
+  model=model
+  isNew=model.isNew
+  isEditing=false
+  on-toEdit=(route-action 'toEdit') }}
+
+{{outlet}}

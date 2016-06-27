@@ -1,0 +1,24 @@
+{{form-controls target=this isEditing=isEditing isNew=isNew isAdmin=isAdmin inFlight=inFlight}}
+
+<fieldset>
+  <legend>Address</legend>
+  {{#input-row label="Name" name="name"}}
+    {{text-input
+      value=resource.name
+      name="name"
+      requireInput=isEditing
+      disabled=notEditing
+      action="performUpdate" target=this
+    }}
+  {{/input-row}}
+  {{#input-row label="Version" name="version"}}
+    {{number-input
+      value=resource.version
+      name="version"
+      requireInput=isEditing
+      disabled=notEditing
+      action="applyChange" target=this
+    }}
+  {{/input-row}}
+</fieldset>
+{{yield}}

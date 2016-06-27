@@ -1,0 +1,23 @@
+<nav class="controls">
+  {{#if isEditing}}
+    {{#if isNew}} {{! resource is not persisted, no id }}
+      <button {{action 'toPreview'}} class="button-preview">Preview</button>{{! back to previewing }}
+      <button {{action 'cancel'}} class="button-cancel">Cancel</button>{{! leaving editing }}
+    {{else}} {{! persisted resource }}
+      {{#x-button action="toDetail" class="button-preview" disabled=inFlight}}{{! leaving editing }}
+        {{#if inFlight}}<em>Saving…</em>{{else}}Done{{/if}}
+      {{/x-button}}
+    {{/if}}
+  {{else}} {{! previewing (notEditing)… }}
+    {{#if isAdmin}} {{! session used to computed privileges to manage the resource }}
+      <button {{action 'toEdit'}} class="button-edit">Edit</button>{{! back to editing }}
+      {{#if isNew}}
+        <button {{action 'cancel'}} class="button-cancel">Cancel</button>{{! leaving previewing }}
+        <button {{action 'save' resource}} class="button-save">Save</button>
+      {{else}}
+        <button {{action 'destroy'}} class="button-delete">Delete</button>
+      {{/if}}
+    {{/if}} {{! non admin in previewing mode should not see any buttons}}
+  {{/if}}
+  {{yield}}
+</nav>
