@@ -14,5 +14,5 @@ export default Ember.Component.extend({
 
   tagName: 'input-row',
 
-  classNames: ['form', 'row']
+  classNames: ['block', 'mb2']
 });

@@ -13,12 +13,6 @@ export default Ember.TextField.extend({
   layout,
 
   /**
-    @property classNames
-    @type Array
-  */
-  classNames: ['resource-form-input', 'u-full-width'],
-
-  /**
     @property attributeBindings
     @type Array
   */

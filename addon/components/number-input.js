@@ -13,12 +13,6 @@ export default Ember.TextField.extend({
   layout,
 
   /**
-    @property classNames
-    @type Array
-  */
-  classNames: ['resource-form-input', 'u-full-width'],
-
-  /**
     @property attributeBindings
     @type Array
   */
@@ -52,7 +46,10 @@ export default Ember.TextField.extend({
     if (this.get('requireInput')) {
       this.get('element').required = true;
     }
-    this.get('target').send(this.get('action'), this.get('name'), this.get('value'));
+
+    let value = this.get('value');
+    if (isNaN(value)) { return; }
+    this.get('target').send(this.get('action'), this.get('name'), value);
   },
 
   /**
@@ -61,7 +58,9 @@ export default Ember.TextField.extend({
     @method mouseLeave
   */
   mouseLeave() {
-    this.get('target').send(this.get('action'), this.get('name'), this.get('value'));
+    let value = this.get('value');
+    if (isNaN(value)) { return; }
+    this.get('target').send(this.get('action'), this.get('name'), value);
   },
 
   /**
@@ -77,11 +76,14 @@ export default Ember.TextField.extend({
   */
   value: Ember.computed({
     get(key) {
-      return parseInt(this.get(`_${key}`), 10);
+      let value = parseInt(this.get(`_${key}`));
+      return isNaN(value) ? 0 : value;
     },
     set(key, value) {
       let toNum = parseInt(value, 10);
+      if(isNaN(toNum)) { return this.get(`_${key}`); } // Default to previous value.
       return this.set(`_${key}`, toNum);
     }
   })
+
 });

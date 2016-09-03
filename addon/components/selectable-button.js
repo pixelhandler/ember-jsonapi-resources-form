@@ -19,7 +19,7 @@ import layout from '../templates/components/selectable-button';
   @class SelectableButtonComponent
   @extends Ember.Component
   @param {String} content the content/label to display in the button element
-  @param {String} value to send to the action method
+  @param {String} value a value to send to the action method
   @param {String} selectedValue is the common value between buttons
   @param {String} action the name of a controller's method to call
 */
@@ -133,4 +133,5 @@ export default Ember.Component.extend({
       return this.sendAction('action', this.get('attrName'), this.get('value'));
     }
   }
+
 });

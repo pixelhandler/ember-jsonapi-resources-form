@@ -17,11 +17,13 @@ const { computed, Component } = Ember;
 
   ```hbs
   {{form-controls target=this isEditing=isEditing isNew=isNew isAdmin=isAdmin}}
+  {{! text-input is bound to the value, use action to persist changes}}
   {{text-input value=resource.name
     name="name" action="performUpdate" target=this
     requireInput=isEditing disabled=notEditing}}
-  {{number-input value=resource.total min="0" step="1"
-    name="total" action="applyChange" target=this
+  {{! number-input does not bind to the value, use action to set changes}}
+  {{number-input value=resource.round min="0" step="1"
+    name="round" action="applyChange" target=this
     requireInput=isEditing disabled=notEditing}}
   ```
 
@@ -58,6 +60,8 @@ const { computed, Component } = Ember;
   }}
   ```
 
+  A Session service is needed for enforcing flags to protect editing/new states
+
   @class ResourceFormComponent
   @extends Ember.Component
 */
@@ -87,7 +91,7 @@ export default Component.extend({
     @property classNames
     @type Array
   */
-  classNames: ['resource-form'],
+  classNames: ['ResourceForm'],
 
   /**
     @property classNameBindings
@@ -208,7 +212,7 @@ export default Component.extend({
     to apply and persist a change.
 
     @method focusOut
-    @param {jQuery.Event} [event]
+    @param {jQuery.Event} event
     @public
   */
   /*
@@ -253,7 +257,9 @@ export default Component.extend({
       @method actions.destroy
     */
     destroy() {
-      this.get('destroyTask').perform();
+      if(window.confirm("Are you sure you want to delete this record? This action cannot be undone.")) {
+        this.get('destroyTask').perform();
+      }
     },
 
     /**
